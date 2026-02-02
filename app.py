@@ -50,7 +50,7 @@ def load_yolo_model():
 
 @st.cache_resource
 def load_paddleocr():
-    return PaddleOCR(use_angle_cls=True, lang='en', show_log=False)
+    return PaddleOCR(use_angle_cls=True, lang='en')
 
 yolo_model = load_yolo_model()
 ocr_model = load_paddleocr()
