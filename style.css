@@ -1,112 +1,149 @@
-/* Main Background - Deep Professional Dark */
-.stApp {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: #f8fafc;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+/* Main Font - Orbitron for that Cyberpunk feel, Inter for readability */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500;700&display=swap');
+
+:root {
+    --neon-green: #0aff00;
+    --neon-cyan: #00f3ff;
+    --neon-pink: #bc13fe;
+    --bg-dark: #050505;
+    --card-bg: rgba(20, 20, 20, 0.85);
 }
 
-/* Typography */
+/* Background */
+.stApp {
+    background-color: var(--bg-dark);
+    background-image:
+        radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(188, 19, 254, 0.08), transparent 25%);
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Typography - Glowing Headers */
 h1 {
-    font-weight: 700;
-    color: #fff;
+    font-family: 'Orbitron', sans-serif !important;
+    font-weight: 700 !important;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
     text-align: center;
-    margin-bottom: 2rem;
-    letter-spacing: -0.5px;
-    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 h3 {
-    font-weight: 600;
-    color: #94a3b8;
-    margin-bottom: 1rem;
+    font-family: 'Orbitron', sans-serif !important;
+    color: var(--neon-cyan) !important;
     text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid var(--neon-cyan);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px !important;
 }
 
 /* Sidebar Styling */
 [data-testid="stSidebar"] {
-    background-color: #0f172a;
-    border-right: 1px solid #1e293b;
+    background-color: #0a0a0a;
+    border-right: 1px solid #333;
 }
 
-/* Professional Card Container */
-.neon-card {
-    /* Keeping class name for compatibility, changing style */
-    background: rgba(30, 41, 59, 0.7);
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid rgba(148, 163, 184, 0.1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    backdrop-filter: blur(10px);
-    margin-bottom: 24px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Neon Cards / Containers */
+.css-1r6slb0,
+.css-12oz5g7 {
+    /* Streamlit generic classes fallback */
+    background: var(--card-bg);
+    border: 1px solid #333;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-.neon-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    /* Subtle Blue Accent */
-}
-
-/* Confidence Score - Clean Badge Style */
-.confidence-score {
-    color: #38bdf8;
-    /* Sky Blue */
-    font-weight: 500;
-    font-size: 0.95rem;
-    display: inline-block;
-    padding: 4px 8px;
-    background: rgba(56, 189, 248, 0.1);
-    border-radius: 6px;
-    margin-bottom: 8px;
-}
-
-/* Final Plate Highlight - Corporate/Professional */
-.final-plate {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #ffffff;
-    text-align: center;
-    border: 1px solid #22c55e;
-    /* Green for success */
-    padding: 16px;
-    border-radius: 8px;
-    background: linear-gradient(to right, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    letter-spacing: 1px;
-}
-
-/* Button Customization - Modern Solid */
+/* Buttons - High Tech Neon */
 .stButton>button {
-    background-color: #3b82f6;
-    /* Blue-500 */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 0.6rem 1.2rem;
-    font-weight: 600;
-    transition: background-color 0.2s;
-    width: 100%;
+    background: transparent !important;
+    color: var(--neon-green) !important;
+    font-family: 'Orbitron', sans-serif !important;
+    border: 2px solid var(--neon-green) !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 0 5px var(--neon-green), inset 0 0 5px var(--neon-green);
 }
 
 .stButton>button:hover {
-    background-color: #2563eb;
-    /* Blue-600 */
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-    color: white;
+    background: var(--neon-green) !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px var(--neon-green), inset 0 0 10px var(--neon-green);
 }
 
-/* File Uploader - Professional Dashed Area */
-[data-testid="stFileUploader"] {
-    background-color: rgba(30, 41, 59, 0.5);
-    border: 2px dashed #475569;
-    border-radius: 12px;
-    padding: 2rem;
-    transition: border-color 0.2s;
+/* Checkboxes & Sliders */
+.stCheckbox label span {
+    font-family: 'Inter', sans-serif;
 }
 
-[data-testid="stFileUploader"]:hover {
-    border-color: #3b82f6;
+/* Tables - Cyberpunk Data Grid */
+div[data-testid="stTable"] {
+    border: 1px solid #333;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+table {
+    color: #fff !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+thead tr th {
+    background-color: #000 !important;
+    color: var(--neon-cyan) !important;
+    font-family: 'Orbitron', sans-serif !important;
+    border-bottom: 1px solid var(--neon-cyan) !important;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    border-bottom: 1px solid #222 !important;
+    transition: background-color 0.2s;
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 243, 255, 0.1) !important;
+}
+
+/* Alerts / Info Boxes */
+.stAlert {
+    background-color: rgba(0, 20, 40, 0.9) !important;
+    border: 1px solid var(--neon-cyan) !important;
+    color: var(--neon-cyan) !important;
+}
+
+/* Image Feed Border */
+[data-testid="stImage"] img {
+    border: 2px solid var(--neon-pink);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+}
+
+/* Custom "Final Plate" text (if used in app logic) */
+.final-plate {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    color: var(--neon-green);
+    text-align: center;
+    border: 2px solid var(--neon-green);
+    background: rgba(10, 255, 0, 0.1);
+    box-shadow: 0 0 20px var(--neon-green);
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem !important;
+    }
 }

@@ -99,15 +99,22 @@ def process_frame(frame, conf_threshold):
     
     return annotated_frame
 
+
+# Global frame counter for skipping
+frame_count = 0
+
 def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
+    global frame_count
     img = frame.to_ndarray(format="bgr24")
     
-    # We need to access conf_threshold. Since we can't pass arguments easily here without a class or globals,
-    # and conf_threshold is in the main script scope, we might need a workaround if it changes.
-    # For now, let's use a default or try to read from a global if possible, but globals are thread-sensitive.
-    # Safest is to hardcode or use a class. Let's use a default 0.4 for WebRTC or try to grab it.
-    
-    processed_img = process_frame(img, 0.4) 
+    frame_count += 1
+    # Process only every 5th frame to prevent lag
+    if frame_count % 5 == 0:
+        processed_img = process_frame(img, 0.4)
+    else:
+        # Just return the original image with a small indicator
+        processed_img = img
+        cv2.putText(processed_img, "Live...", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
     
     return av.VideoFrame.from_ndarray(processed_img, format="bgr24")
 
@@ -119,7 +126,7 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown("### 📷 INPUT SOURCE")
-    input_source = st.radio("Select Source:", ["Live Mobile Camera (WebRTC)", "Live Video (Local)"])
+    input_source = st.radio("Select Source:", ["Live Mobile/Laptop Camera (WebRTC)", "Live Video (Local - Desktop Only)"])
     
     st.markdown("---")
     st.markdown("### ℹ️ ABOUT")
@@ -147,9 +154,9 @@ with col1:
     frame_placeholder = st.empty()
 
 
-    # ---------------- LIVE MOBILE CAMERA (WEBRTC) ----------------
-    if input_source == "Live Mobile Camera (WebRTC)":
-        st.write("Live feed from your mobile device.")
+    # ---------------- LIVE MOBILE / LAPTOP CAMERA (WEBRTC) ----------------
+    if input_source == "Live Mobile/Laptop Camera (WebRTC)":
+        st.write("Live feed from your device.")
         
         # WebRTC Configuration
         RTC_CONFIGURATION = RTCConfiguration(
@@ -160,7 +167,8 @@ with col1:
             key="mobile_live",
             mode=WebRtcMode.SENDRECV,
             rtc_configuration=RTC_CONFIGURATION,
-            media_stream_constraints={"video": {"facingMode": "environment"}}, # specific for mobile back camera
+            # Removed specific facingMode to allow Laptops to work too.
+            media_stream_constraints={"video": True, "audio": False},
             video_frame_callback=video_frame_callback,
             async_processing=True,
         )
