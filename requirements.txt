@@ -1,8 +1,9 @@
 ultralytics
 opencv-python-headless
 matplotlib
-paddlepaddle==2.6.2
-paddleocr<3.0.0
+paddlepaddle
+paddleocr
+numpy<2.0.0
 streamlit
 shapely
 streamlit-lottie
