@@ -1,0 +1,11 @@
+ultralytics
+opencv-python-headless
+matplotlib
+paddlepaddle==2.6.2
+paddleocr<3.0.0
+streamlit
+shapely
+streamlit-lottie
+streamlit-webrtc
+av
+requests
